@@ -84,3 +84,105 @@ if(player1points > player2points){
     alert("tie")
 }
 
+
+
+
+var cards = new Array();
+var typeArray = ["s", "d", "c", "h"];
+var cardNumberArray = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"];
+
+for(let i=0; i <typeArray.length; i++)
+{
+    for(let x=0; x <cardNumberArray.length; x++)
+    {
+        let card = {cardNumber: cardNumberArray[x], type: typeArray[i]};
+        cards.push(card);
+    }
+}
+
+for (var i=0; i < 10000; i++)
+{
+    let rand1 = Math.floor((Math.random() * cards.length));
+    let rand2 = Math.floor((Math.random() * cards.length));
+    let tmp = cards[rand1];
+    cards[rand1] = cards[rand2];
+    cards[rand2] = tmp;
+}}
+
+
+function game() {
+
+    playerHand = cards.slice();
+    playe2hand = cards.slice();
+
+    var randomHand1 = Math.floor(Math.random() * playerHand);
+    var randomHand2 = Math.floor(Math.random() * playe2hand);
+
+
+    function Score() {
+
+        var player1Score = 0;
+
+
+        player1Score+=1;
+
+        console.log(player1Score);
+
+
+    }
+
+    function score2() {
+
+        var player2Score = 0 ;
+
+        player2Score+=1;
+
+        console.log(player2Score);
+
+    }
+
+    function winningConditions(){
+
+        if (randomHand1.shift() > randomHand2) {
+
+            var playerscore1 = 0;
+
+            playerscore1 = playerscore1 + 1;
+
+            console.log("Player1 Score: " + playerscore1);
+        }
+
+        if (randomHand1.shift() < randomHand2) {
+
+            var playerscore2 = 0;
+
+            playerscore2 = playerscore2 + 1;
+
+            console.log("Player2 Score: " + playerscore2);
+        }
+
+        if (randomHand1.shift() === randomHand2) {
+
+            console.log("Draw")
+        }
+
+
+    }
+
+    function Winner() {
+        //
+        // if (randomHand1.shift() > randomHand2) {
+        //     Score(player1Score, player2Score);
+        //
+        //     game();
+        //
+        // }
+        //
+        // else if (randomHand1.shift === randomHand2.shift) {
+        //
+        //     if (randomHand1.unshift() >
+        // }
+
+    }
+
+}
