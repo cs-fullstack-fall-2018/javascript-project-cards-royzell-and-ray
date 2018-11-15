@@ -72,7 +72,12 @@ var player2Score = document.getElementById("player2");
 var resetButton = document.getElementById("reset");
 var playButton = document.getElementById("play");
 var gameTypes = document.getElementsByClassName("type");
-var board = document.getElementById("board")
+var board = document.getElementById("board");
+var player1Bar = new ldBar("#player1Bar");
+var player2Bar = new ldBar("#player2Bar");
+var player1RoundAnswers = document.getElementById("1answers");
+var player2RoundAnswers = document.getElementById("2answers");
+var percentage;
 
 player1Deck = cards.slice();
 player2Deck = player1Deck.splice(1, 26);
@@ -82,24 +87,48 @@ playButton.addEventListener("click", game);
 resetButton.addEventListener("click", reset);
 
 
+
+
+
 function reset() {
+    board.innerText="Press the play button to play a hand."
+    playButton.disabled = false;
+    player1Bar.set(0);
+    player2Bar.set(0);
+    player1Card.innerHTML = "<img src="+"cardImages/PNG/red_back.png"+"\>";
+    player2Card.innerHTML = "<img src=" + "cardImages/PNG/yellow_back.png"+ "\>";
+
     executed = 0;
     roundwins1 = 0;
     roundwins2 = 0;
-    player1Score.innerText = "Player 1: " + 0;
-    player2Score.innerText = "Player 2: " + 0;
+    player1Score.innerText = "Red: " + 0;
+    player2Score.innerText = "Yellow: " + 0;
+    player1RoundAnswers.innerText = "";
+    player2RoundAnswers.innerText = "";
 }
 
 function game() {
+    playButton.disabled = true;
+    board.innerText="..."
+    player1RoundAnswers.innerText = "";
+    player2RoundAnswers.innerText = "";
     console.log(playcount)
+    player1Bar.set(0);
+    player2Bar.set(0);
+
+
     if (executed < playcount) {
         player1points = 0;
         player2points = 0;
         randomize();
-        let iterator = 0
+
+        let iterator = 0;
+
+
         let plays = setInterval(function () {
-            // player1RoundScore.innerHTML = "<h1>"+player1points+"</h1>"
-            // player2RoundScore.innerHTML = "<h1>"+player2points+"</h1>"
+
+
+
             player1Answer = parseInt(player1Deck[iterator].cardNumber);
             let src1 ="cardImages/PNG/" + player1Deck[iterator].image;
             let src2 = "cardImages/PNG/" + player2Deck[iterator].image;
@@ -107,55 +136,85 @@ function game() {
             player1Card.innerHTML = "<img src="+ src1 +"\>";
             player2Answer = parseInt(player2Deck[iterator].cardNumber);
             player2Card.innerHTML = "<img src="+ src2 +"\>";
+            let redAnswer = player1Deck[iterator].image.substring(0,2);
+            let yellowAnswer = player2Deck[iterator].image.substring(0,2);
+
+            player1RoundAnswers.innerText += redAnswer+" ";
+            player2RoundAnswers.innerText += yellowAnswer+" ";
+
+
 
 
             if (player1Answer > player2Answer) {
                 player1points += 1;
-                player1RoundScore.innerText = player1points
+                percentage = (player1points * 10);
+                player1Bar.set(percentage);
+
+                // player1RoundScore.innerText = player1points
             } else if(player2Answer > player1Answer) {
                 player2points += 1;
-                player2RoundScore.innerText = player2points
+                percentage = (player2points * 10);
+                player2Bar.set(percentage);
+                // player2RoundScore.innerText = player2points
             }else{
             }
             iterator++;
-            if(iterator > 15){
+            if(iterator > 10){
+
+                playButton.disabled = false
                 clearInterval(plays);
                 if (player1points > player2points) {
                     roundwins1 +=1;
-                    player1Score.innerText = "Player 1: " + roundwins1
+                    player1Score.innerText = "Red: " + roundwins1
                     executed += 1;
-                    board.innerText="PLAYER 1 WINS THIS ROUND"
+                    board.innerText="RED WINS THIS ROUND"
 
 
                 } else if (player2points > player1points) {
 
                     roundwins2 +=1;
-                    player2Score.innerText = "Player 2: " + roundwins2
+                    player2Score.innerText = "Yellow: " + roundwins2
                     executed += 1
-                    board.innerText= "PLAYER 2 WINS THIS ROUND";
+                    board.innerText= "YELLOW WINS THIS ROUND";
                 } else {
                     board.innerText="TIE"
 
                 }
+                if(executed >= playcount || (executed > playcount/2 && (roundwins1 > playcount/2 || roundwins2 > playcount/2))){
+                    if(roundwins1 > roundwins2){
+                        board.innerText="RED WINS THE GAME"
+                        playButton.disabled = true;
+
+                    }else{
+                        board.innerText="YELLOW WINS THE GAME"
+                        playButton.disabled = true;
+
+                    }
+                }
             }
 
 
+
         },100);
+
         console.log("Here1")
 
 
 
 
 
-
+    console.log("executed: "+executed);
+    console.log("playcount "+playcount);
     }
-    if(executed >= playcount){
-        if(roundwins1 > roundwins2){
-            alert("PLAYER 1 WINS GAME")
-        }else{
-            alert("PLAYER 2 WINS GAME")
-        }
-    }
+    // if(executed >= playcount || (executed > playcount/2 && !(roundwins1 === roundwins2))){
+    //     if(roundwins1 > roundwins2){
+    //         board.innerText="RED WINS THE GAME"
+    //
+    //     }else{
+    //         board.innerText="YELLOW WINS THE GAME"
+    //
+    //     }
+    // }
 }
 
 
