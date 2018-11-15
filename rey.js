@@ -77,6 +77,8 @@ var player1Bar = new ldBar("#player1Bar");
 var player2Bar = new ldBar("#player2Bar");
 var player1RoundAnswers = document.getElementById("1answers");
 var player2RoundAnswers = document.getElementById("2answers");
+var lower = document.getElementById("lower");
+var higher = document.getElementById("higher")
 var percentage;
 
 player1Deck = cards.slice();
@@ -99,6 +101,8 @@ function reset() {
     player2Card.innerHTML = "<img src=" + "cardImages/PNG/yellow_back.png"+ "\>";
 
     executed = 0;
+    lower.innerText = executed + 1;
+    higher.innerText = playcount;
     roundwins1 = 0;
     roundwins2 = 0;
     player1Score.innerText = "Red: " + 0;
@@ -123,6 +127,7 @@ function game() {
         randomize();
 
         let iterator = 0;
+        lower.innerText = executed + 1;
 
 
         let plays = setInterval(function () {
@@ -180,6 +185,7 @@ function game() {
                     board.innerText="TIE"
 
                 }
+
                 if(executed >= playcount || (executed > playcount/2 && (roundwins1 > playcount/2 || roundwins2 > playcount/2))){
                     if(roundwins1 > roundwins2){
                         board.innerText="RED WINS THE GAME"
@@ -203,8 +209,6 @@ function game() {
 
 
 
-    console.log("executed: "+executed);
-    console.log("playcount "+playcount);
     }
     // if(executed >= playcount || (executed > playcount/2 && !(roundwins1 === roundwins2))){
     //     if(roundwins1 > roundwins2){

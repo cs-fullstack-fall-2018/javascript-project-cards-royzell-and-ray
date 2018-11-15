@@ -11,6 +11,16 @@
 <!--<div class="ldBar" id="player1Bar" data-value="0"></div>-->
 
 <!--<h1>Round Score: <span id="player1RoundScore">0 </span></h1>-->
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Game info
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+    </div>
+</div>
 
 <div class="mt-5 container">
     <div class="row">
@@ -27,17 +37,18 @@
 <div class="mt-5 container">
     <div class="row h-20">
         <div class="col-sm text-center">
-            <div><h3 id="player1">Red: 0</h3></div>
+            <div><h3 style="border-bottom: 3px solid red;" id="player1">Red: 0</h3></div>
             <div style="margin-top: 8%">Cards: <span id="1answers"></span></div>
 
 
 
         </div>
         <div class="col-sm text-center">
-            <button style="margin-top: 20%" id="play">PLAY HAND</button>
+            <div><h3>Round <span id="lower">1</span> of <span id="higher">3</span></h3></div>
+            <button style="margin-top: 5%" id="play">PLAY HAND</button>
         </div>
         <div class="col-sm text-center">
-            <div><h3 id="player2">Yellow: 0</h3></div>
+            <div><h3 style="border-bottom: 3px solid yellow" id="player2">Yellow: 0</h3></div>
             <div style="margin-top: 8%">Cards: <span id="2answers"></span></div>
        </div>
     </div>
