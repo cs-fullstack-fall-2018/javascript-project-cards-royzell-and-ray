@@ -200,15 +200,7 @@ function game() {
 
 
     }
-    // if(executed >= playcount || (executed > playcount/2 && !(roundwins1 === roundwins2))){
-    //     if(roundwins1 > roundwins2){
-    //         board.innerText="RED WINS THE GAME"
-    //
-    //     }else{
-    //         board.innerText="YELLOW WINS THE GAME"
-    //
-    //     }
-    // }
+
 }
 
 
@@ -270,26 +262,3 @@ for (var i = 0; i < gameTypes.length; i++) {
     gameTypes[i].addEventListener('click', setGameType, false);
 }
 
-
-// randomize();
-// game();
-// for (let x = 0; x < 4; x++) {
-//     let player1Answer = player1Deck[x].cardNumber;
-//     let src1 ="cardImages/PNG/" + player1Deck[x].image;
-//     let src2 = "cardImages/PNG/" + player2Deck[x].image;
-//     player1Card.innerHTML = "<img src="+ src1 +"\>";
-//     let player2Answer = player2Deck[x].cardNumber;
-//     player2Card.innerHTML = "<img src="+ src2 +"\>";
-//
-//
-//
-//     if (player1Answer < player2Answer) {
-//         player1points += 1;
-//         player1RoundScore.innerHTML = "<h1>"+player1points+"</h1>"
-//     } else if(player2Answer < player1Answer) {
-//         player2points += 1;
-//         player2RoundScore.innerHTML = "<h1>"+player2points+"</h1>"
-//     }
-//
-//
-// }
